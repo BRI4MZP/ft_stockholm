@@ -54,7 +54,7 @@ def decode(keyfile, before, silent):
 			reader = file.read()
 		key = Fernet(reader)
 	except FileNotFoundError:
-		print('File not found')
+		quit('keyFile not found')
 		return
 	except Exception as e:
 		print('Error: ' + str(e))
@@ -92,6 +92,8 @@ def ft_stockholm():
 		for file in os.listdir(args.path):
 			if os.path.isfile(os.path.join(args.path, file)):
 				decode(args.reverse, os.path.join(args.path, file), args.silent)
+			else:
+				print('Error: {}  is not a file'.format(file))
 if __name__ == '__main__':
 	ft_stockholm()
 
